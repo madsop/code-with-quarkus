@@ -6495,6 +6495,24 @@ CREATE TABLE IF NOT EXISTS `kontakt` (
   INDEX(`registrert_av`),
   FOREIGN KEY (`registrert_av`) REFERENCES `person` (`id`)
 );
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `melding` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `tekst` longtext NOT NULL,
+);
+
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `sendtMelding` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `melding_id` int(6) NOT NULL,
+  INDEX(`melding_id`),
+  FOREIGN KEY (`melding_id`) REFERENCES `melding` (`id`),
+  `personmottaker` int(6) NOT NULL,
+  INDEX(`person`),
+  FOREIGN KEY (`personmottaker`) REFERENCES `person` (`id`),
+);
 
 -- --------------------------------------------------------
 
